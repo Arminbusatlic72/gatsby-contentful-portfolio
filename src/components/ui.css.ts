@@ -562,6 +562,7 @@ export const avatar = style({
   width: theme.sizes.avatar,
   height: theme.sizes.avatar,
   borderRadius: theme.radii.circle,
+
 })
 
 export type LogoSizes = "small" | "medium"

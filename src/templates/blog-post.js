@@ -1,6 +1,7 @@
 import * as React from "react"
 import { GatsbyImage } from "gatsby-plugin-image"
 import Layout from "../components/layout"
+import { graphql } from "gatsby"
 import {
   Container,
   Flex,
@@ -11,15 +12,18 @@ import {
   Avatar,
 } from "../components/ui"
 import { avatar as avatarStyle } from "../components/ui.css"
-import * as styles from "./blog-post.css"
-
+// import * as styles from "./blog-post.css"
+// import { renderRichText } from "gatsby-source-contentful/rich-text"
+import ContentfulRichTech from "../components/rich-text"
 export default function BlogPost(props) {
+  const { contentfulBlogPost } = props.data
+  console.log(contentfulBlogPost)
   return (
     <Layout {...props} description={props.excerpt}>
       <Container>
         <Box paddingY={5}>
           <Heading as="h1" center>
-            {props.title}
+            {contentfulBlogPost.title}
           </Heading>
           <Space size={4} />
           {props.author && (
@@ -47,19 +51,47 @@ export default function BlogPost(props) {
           <Space size={4} />
           {props.image && (
             <GatsbyImage
-              alt={props.image.alt}
-              image={props.image.gatsbyImageData}
+              alt={contentfulBlogPost.image.alt}
+              image={contentfulBlogPost.image.gatsbyImageData}
             />
           )}
           <Space size={5} />
-          <div
+          {/* <div
             className={styles.blogPost}
             dangerouslySetInnerHTML={{
               __html: props.html,
             }}
-          />
+          /> */}
+          <ContentfulRichTech richText={contentfulBlogPost.body} />
+          {/* <div className={styles.blogPost}>
+            {renderRichText(contentfulBlogPost.body)}
+          </div> */}
         </Box>
       </Container>
     </Layout>
   )
 }
+
+export const query = graphql`
+  query ($slug: String!) {
+    contentfulBlogPost(slug: { eq: $slug }) {
+      title
+      image {
+        gatsbyImageData
+        alt
+      }
+      body {
+        raw
+        references {
+          ... on ContentfulAsset {
+            contentful_id
+            title
+            description
+            gatsbyImageData(width: 1000)
+            __typename
+          }
+        }
+      }
+    }
+  }
+`
