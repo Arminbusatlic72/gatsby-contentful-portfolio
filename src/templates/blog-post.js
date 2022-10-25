@@ -12,7 +12,7 @@ import {
   Avatar,
 } from "../components/ui"
 import { avatar as avatarStyle } from "../components/ui.css"
-// import * as styles from "./blog-post.css"
+import * as styles from "./blog-post.css"
 // import { renderRichText } from "gatsby-source-contentful/rich-text"
 import ContentfulRichTech from "../components/rich-text"
 export default function BlogPost(props) {
@@ -47,25 +47,19 @@ export default function BlogPost(props) {
             </Box>
           )}
           <Space size={4} />
-          <Text center>{props.date}</Text>
+          <Text center>
+            {new Date(contentfulBlogPost.createdAt).toLocaleDateString()}
+          </Text>
           <Space size={4} />
-          {props.image && (
+          {contentfulBlogPost.image && (
             <GatsbyImage
               alt={contentfulBlogPost.image.alt}
               image={contentfulBlogPost.image.gatsbyImageData}
             />
           )}
           <Space size={5} />
-          {/* <div
-            className={styles.blogPost}
-            dangerouslySetInnerHTML={{
-              __html: props.html,
-            }}
-          /> */}
+
           <ContentfulRichTech richText={contentfulBlogPost.body} />
-          {/* <div className={styles.blogPost}>
-            {renderRichText(contentfulBlogPost.body)}
-          </div> */}
         </Box>
       </Container>
     </Layout>
@@ -80,6 +74,8 @@ export const query = graphql`
         gatsbyImageData
         alt
       }
+      createdAt
+
       body {
         raw
         references {
@@ -87,7 +83,7 @@ export const query = graphql`
             contentful_id
             title
             description
-            gatsbyImageData(width: 1000)
+            gatsbyImageData(width: 400)
             __typename
           }
         }

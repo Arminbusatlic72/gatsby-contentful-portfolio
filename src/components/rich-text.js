@@ -5,7 +5,15 @@ import slugify from "@sindresorhus/slugify"
 import { INLINES, BLOCKS, MARKS } from "@contentful/rich-text-types"
 import { renderRichText } from "gatsby-source-contentful/rich-text"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
-
+import {
+  Container,
+  Flex,
+  Box,
+  Space,
+  Heading,
+  Text,
+  Avatar,
+} from "../components/ui"
 const createJumpLink = (children) => {
   return (
     <a
@@ -94,7 +102,12 @@ const options = {
       if (node.content[0].value === "") {
         return <br />
       } else {
-        return <p className="leading-loose">{children}</p>
+        return (
+          <>
+            <Text>{children}</Text>
+            <Space className="empty" size={6} />
+          </>
+        )
       }
     },
     [BLOCKS.QUOTE]: (children) => (
@@ -110,7 +123,7 @@ const options = {
         <GatsbyImage
           image={getImage(gatsbyImageData)}
           alt={description}
-          className="mb-10"
+          className=""
         />
       )
     },
