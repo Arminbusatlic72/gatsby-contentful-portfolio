@@ -18,7 +18,7 @@ export default function About(props) {
   )
 }
 
-export const query = graphql`
+const newLocal = `
   {
     aboutPage {
       id
@@ -42,3 +42,4 @@ export const query = graphql`
     }
   }
 `
+export const query = graphqlnewLocal
