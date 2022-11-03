@@ -1,25 +1,15 @@
-    // import React from "react"
-    // import {​​ graphql }​​ from "gatsby"
-    
-    // const Page = ({​​ data }​​) => <pre>{​​JSON.stringify(data, null, 4)}​​</pre>
-    // export const query = graphql`
-    // {
-    //     query {​​
-    //     allContentfulBlogPost {​​
-    //     edges {​​
-    //     node {​​
-    //         slug
-    //         title
-    //     }
-    //     }
-    //     image {​​
-    //         alt
-    //         gatsbyImageData
-    //         }​​
-    //     }​​
-    //     }​​
-    //     }
-    // }
-    // `
-    // export default Page
+import React from "react";
+import Link from "gatsby-link";
+import PostLink from "../templates/blogPage.js"
+
+const Page = () => (
+  <div>
+    <h1>Hi people</h1>
+    <p>Welcome to your new Gatsby site.</p>
+    <p>Now go build something great.</p>
+    <Link to="/page-2/">Go to page 2</Link>
+  </div>
+);
+
+export default Page;
     
