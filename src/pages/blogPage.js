@@ -1,18 +1,25 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import Layout from "../components/layout"
 
 const BlogPage = ({ data }) => {
 const posts = data.allContentfulBlogPost.nodes
+console.log(posts);
   return (
     <Layout>
       <ul>
         {posts.map(post => (
           <div>
-                <li key={post.slug}>
+            <Link to={`/blog/${post.slug}`}>
+                <li key={post.id}>
                   <h2>{post.title}</h2>
-                  <p>{post.image.id}</p>
+                  <GatsbyImage
+                    alt={post.image.alt}
+                    image={getImage(post.image.gatsbyImageData)}
+                  />
                 </li>
+              </Link>
           </div>
         ))}
       </ul>
@@ -26,9 +33,10 @@ export const query = graphql`
       nodes {
         slug
         title
+        id
         image {
-          id
-          gatsbyImage
+          alt
+          gatsbyImageData
         }
       }
     }
