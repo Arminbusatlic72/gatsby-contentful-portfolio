@@ -2,48 +2,47 @@ import React from "react"
 import { graphql, Link } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import Layout from "../components/layout"
-import { Text, Box, Space, FlexList, Section, Container, Heading} from "../components/ui"
+import { Text, Box, Space, FlexList, Section, Container} from "../components/ui"
 
-const BlogPage = ({ data }) => {
-const posts = data.allContentfulBlogPost.nodes
+const BlogPage = (props) => {
+// const post = props.allContentfulBlogPost.nodes
+console.log(props);
   return (
            <Box>
-                 {posts.map(post => (
-                            <Link to={`/blog/${post.slug}`}>
+                            <Link to={`/blog/${props.slug}`}>
                                 <Box width="third" padding={4} center>
                                     <Box>
-                                          {post.title && (
+                                          {props.title && (
                                             <GatsbyImage
-                                              alt={post.image.alt}
-                                              image={getImage(post.image.gatsbyImageData)}
+                                              alt={props.image.alt}
+                                              image={getImage(props.image.gatsbyImageData)}
                                               />
                                           )}
                                     </Box>
                                     <Space size={2} />
                                     <Box>
-                                          {post.title && (
+                                          {props.title && (
                                             <Text variant="medium">
-                                             {post.title}
+                                             {props.title}
                                             </Text>
                                           )}
                                     </Box>
                                 </Box>
                             </Link>
-                        ))}
            </Box>
           )
   }
 
-  export default function BlogPostList(posts) {
-    const blogPost = posts.data
-    console.log(blogPost);
+  export default function BlogPostList(props) {
+    // const post = props.allContentfulBlogPost
+    console.log(props);
     return (
             <Layout>
                   <Section>
                     <Container width="tight">
                       <FlexList gap={0} variant="center" alignItems="start">
-                      {blogPost.map(posts => (
-                          <BlogPage {...posts}/>
+                      {props.data.allContentfulBlogPost.nodes.map((post) => (
+                          <BlogPage key={post.id} {...post}/>
                       ))}
                       </FlexList>
                     </Container>
