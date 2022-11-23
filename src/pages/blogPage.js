@@ -1,15 +1,15 @@
 import React from "react"
-import { graphql, Link } from "gatsby"
+import { graphql, Link} from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import Layout from "../components/layout"
-import { Text, Box, Space, FlexList, Section, Container, Subhead} from "../components/ui"
+import {Box, Space, FlexList, Section, Container, Text, Heading} from "../components/ui"
 
 const BlogPage = (props) => {
 // const post = props.allContentfulBlogPost.nodes
 console.log(props);
   return (
-                    <Box width="third" padding={4} center>
-                            <Link to={`/blog/${props.slug}`} variant="medium">
+                    <Box width="quarter" padding={4} center>
+                            <Link to={`/blog/${props.slug}`} variant="medium" style={{ textDecoration: 'none', color: 'inherit' }}>
                                     <Box>
                                           {props.title && (
                                             <GatsbyImage
@@ -21,9 +21,9 @@ console.log(props);
                                     <Space size={2} />
                                     <Box>
                                           {props.title && (
-                                            <Subhead variant="medium" bold center>
+                                            <Text variant="medium" bold center>
                                              {props.title}
-                                            </Subhead>
+                                            </Text>
                                           )}
                                     </Box>
                             </Link>
@@ -37,7 +37,10 @@ console.log(props);
     return (
             <Layout>
                   <Section>
-                    <Container width="third">
+                    <Container width="normal">
+                    <Box center paddingY={4}>
+                      <Heading as="h1">Blog Posts</Heading>
+                    </Box>
                       <FlexList gap={0} variant="center" alignItems="start">
                       {props.data.allContentfulBlogPost.nodes.map((post) => (
                           <BlogPage key={post.id} {...post}/>
@@ -58,7 +61,7 @@ query {
       id
       image {
         alt
-        gatsbyImageData
+        gatsbyImageData(height: 300, width: 300)
           }
         }
       }
