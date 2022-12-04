@@ -14,7 +14,7 @@ import {
 
 function AboutProfile(props) {
   return (
-    <Box width="third" padding={4} center>
+    <Box width="third" padding={4} left>
       {props.image && (
         <GatsbyImage
           alt={props.image.alt}

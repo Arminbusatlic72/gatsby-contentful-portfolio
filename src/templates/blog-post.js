@@ -13,7 +13,6 @@ import {
 } from "../components/ui"
 import { avatar as avatarStyle } from "../components/ui.css"
 import * as styles from "./blog-post.css"
-// import { renderRichText } from "gatsby-source-contentful/rich-text"
 import ContentfulRichTech from "../components/rich-text"
 export default function BlogPost(props) {
   const { contentfulBlogPost } = props.data
@@ -71,11 +70,10 @@ export const query = graphql`
     contentfulBlogPost(slug: { eq: $slug }) {
       title
       image {
-        gatsbyImageData
+        gatsbyImageData(width: 350)
         alt
       }
       createdAt
-
       body {
         raw
         references {
@@ -83,7 +81,7 @@ export const query = graphql`
             contentful_id
             title
             description
-            gatsbyImageData(width: 400)
+            gatsbyImageData(width: 600)
             __typename
           }
         }

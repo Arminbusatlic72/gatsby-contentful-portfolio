@@ -13,6 +13,7 @@ import {
 } from "./ui"
 
 export default function Feature(props) {
+  console.log(props)
   return (
     <Section padding={4} background="muted">
       <Container>
@@ -28,7 +29,7 @@ export default function Feature(props) {
           <Box width="half">
             <Subhead>
               {props.kicker && <Kicker>{props.kicker}</Kicker>}
-              {props.heading}
+              {props.title}
             </Subhead>
             <Text variant="lead">{props.text}</Text>
             <ButtonList links={props.links} />

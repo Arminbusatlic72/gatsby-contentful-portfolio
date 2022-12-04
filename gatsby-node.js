@@ -224,6 +224,7 @@ exports.createSchemaCustomization = async ({ actions }) => {
       text: String
       image: HomepageImage
       links: [HomepageLink]
+      category: String
     }
 
     interface HomepageProductList implements Node & HomepageBlock {
@@ -301,13 +302,23 @@ exports.createSchemaCustomization = async ({ actions }) => {
       value: String
       label: String
     }
+    interface List implements Node {
+      id: ID!
+      name: String
+      link: String
+      slug: String
+    }
 
     interface AboutStatList implements Node & HomepageBlock {
       id: ID!
       blocktype: String
       content: [AboutStat]
     }
-
+    interface CategoryList implements Node {
+      id: ID!
+      blocktype: String
+      content: [AboutStat]
+    }
     interface AboutProfile implements Node {
       id: ID!
       image: HomepageImage
@@ -491,6 +502,7 @@ exports.createSchemaCustomization = async ({ actions }) => {
       text: String
       image: HomepageImage @link(from: "image___NODE")
       links: [HomepageLink] @link(from: "links___NODE")
+      category: String
     }
 
     type ContentfulHomepageProductList implements Node & HomepageProductList & HomepageBlock
@@ -534,7 +546,12 @@ exports.createSchemaCustomization = async ({ actions }) => {
       blocktype: String @blocktype
       content: [AboutStat] @link(from: "content___NODE")
     }
-
+    type ContentfulCategoryList implements Node & AboutStatList & HomepageBlock
+      @dontInfer {
+      id: ID!
+      blocktype: String @blocktype
+      content: [AboutStat] @link(from: "content___NODE")
+    }
     type ContentfulAboutProfile implements Node & AboutProfile @dontInfer {
       id: ID!
       image: HomepageImage @link(from: "image___NODE")
