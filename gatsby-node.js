@@ -503,6 +503,7 @@ exports.createSchemaCustomization = async ({ actions }) => {
       image: HomepageImage @link(from: "image___NODE")
       links: [HomepageLink] @link(from: "links___NODE")
       category: String
+      slug: String
     }
 
     type ContentfulHomepageProductList implements Node & HomepageProductList & HomepageBlock
@@ -648,6 +649,32 @@ exports.createPages = async ({ graphql, actions }) => {
     createPage({
       component: blogTemplate,
       path: `/blog/${edge.node.slug}`,
+      context: {
+        slug: edge.node.slug,
+      },
+    })
+  })
+}
+// create pages for each category
+exports.createPages = async ({ graphql, actions }) => {
+  const { createPage } = actions
+  const categoryTemplate = path.resolve("./src/templates/category.js")
+  const res = await graphql(`
+    query {
+      allContentfulHomepageProduct {
+        edges {
+          node {
+            slug
+          }
+        }
+      }
+    }
+  `)
+
+  res.data.allContentfulHomepageProduct.edges.forEach((edge) => {
+    createPage({
+      component: categoryTemplate,
+      path: `/kategorija/${edge.node.slug}`,
       context: {
         slug: edge.node.slug,
       },

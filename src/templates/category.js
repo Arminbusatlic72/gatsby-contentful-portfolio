@@ -12,8 +12,9 @@ import {
   Box,
   Space,
   LinkList,
-} from "./ui"
-import CategoryList from "./categoryList"
+} from "../components/ui"
+import Layout from "../components/layout"
+import CategoryList from "../components/categoryList"
 function Product(props) {
   return (
     <Box width="third" padding={4} left>
@@ -26,7 +27,7 @@ function Product(props) {
       )}
       <Space size={3} />
       <Subhead variant="large" bold center>
-        {props.heading}Hello
+        {props.heading}
       </Subhead>
       <Space size={3} />
 
@@ -38,47 +39,46 @@ function Product(props) {
   )
 }
 
-export default function ProductList(props) {
+export default function CategoryPage(props) {
+  console.log(props)
   return (
-    <Section>
-      <Container width="tight">
-        <Box center paddingY={4}>
-          <Heading>
-            {props.kicker && <Kicker>{props.kicker}</Kicker>}
-            {props.heading}
-          </Heading>
-          <CategoryList />
-          {props.text && <Text>{props.text}</Text>}
-        </Box>
-        <FlexList gap={0} variant="center" alignItems="start">
-          {props.content.map((product) => (
-            <Product key={product.id} {...product} />
-          ))}
-        </FlexList>
-      </Container>
-    </Section>
+    <Layout>
+      <Section>
+        <Container width="tight">
+          <Box center paddingY={4}>
+            <Heading>
+              {/* {props.data.allContentfulHomepageProduct.edges[0].node.category} */}
+            </Heading>
+            <CategoryList />
+          </Box>
+          <FlexList gap={0} variant="center" alignItems="start">
+            {props.data.allContentfulHomepageProduct.edges.map((product) => (
+              <Product key={product.node.id} {...product.node} />
+            ))}
+          </FlexList>
+        </Container>
+      </Section>
+    </Layout>
   )
 }
 
 export const query = graphql`
-  fragment HomepageProductListContent on HomepageProductList {
-    id
-    kicker
-    heading
-    text
-    content {
-      id
-      heading
-      text
-      image {
-        alt
-        id
-        gatsbyImageData
-      }
-      links {
-        id
-        href
-        text
+  query ($slug: String) {
+    allContentfulHomepageProduct(filter: { slug: { eq: $slug } }) {
+      edges {
+        node {
+          slug
+          category
+          heading
+          image {
+            alt
+            gatsbyImageData
+          }
+          text
+          links {
+            href
+          }
+        }
       }
     }
   }
