@@ -39,7 +39,6 @@ function Product(props) {
 }
 
 export default function ProductList(props) {
-  console.log(props)
   return (
     <Section>
       <Container width="tight">

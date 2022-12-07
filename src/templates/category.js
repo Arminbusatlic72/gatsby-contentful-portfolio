@@ -72,10 +72,11 @@ export const query = graphql`
           heading
           image {
             alt
-            gatsbyImageData
+            gatsbyImageData(width: 300, height: 300)
           }
           text
           links {
+            text
             href
           }
         }
