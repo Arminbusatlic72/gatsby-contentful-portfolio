@@ -26,7 +26,7 @@ function Product(props) {
       )}
       <Space size={3} />
       <Subhead variant="large" bold center>
-        {props.heading}Hello
+        {props.heading}
       </Subhead>
       <Space size={3} />
 
@@ -39,6 +39,7 @@ function Product(props) {
 }
 
 export default function ProductList(props) {
+  console.log(props)
   return (
     <Section>
       <Container width="tight">
