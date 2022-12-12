@@ -12,16 +12,30 @@ const ContactForm = () => {
       email: ""
     })
 
+    const encode = (data) => {
+      return Object.keys(data)
+          .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+          .join("&");
+    }
+
     const handleChange = e => (
       setFormState({
         ...formState,
-        [e.target.name]: e.tagret.value,
+        [e.target.name]: e.target.value,
       })
     )
     
-    const handleSubmit = e => (
-      e.preventDefault()
-    )
+    const handleSubmit = e => {
+      fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: encode({ "form-name": "contact", ...formState })
+      })
+        .then(() => alert("Success!"))
+        .catch(error => alert(error));
+
+      e.preventDefault();
+    }
 
     return (
 
@@ -32,11 +46,13 @@ const ContactForm = () => {
                             <Heading>CONTACT</Heading>
                         </Box>
                             <form
-                            method="POST"
-                            target="_blank"
+                            onSubmit={handleSubmit}
+                            name="contact"
+                            method="post"
                             data-netlify="true"
-                            netlify_honeypot="bot-field"
+                            data-netlify-honeypot="bot-field"
                             >
+                            <input type="hidden" name="form-name" value="contact" />
                             <Box  padding={2} center>
                                 <input
                                 type="text"
