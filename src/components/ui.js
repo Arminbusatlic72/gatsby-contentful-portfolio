@@ -246,3 +246,11 @@ export function VisuallyHidden(props) {
 export function BlockLink(props) {
   return <Link className={styles.blockLink} {...props} />
 }
+
+export function Input(props) {
+  return  <input className={styles.dataInput} {...props} />
+}
+
+export function TextInput(props) {
+  return  <input className={styles.textInput} {...props} />
+}

@@ -1,9 +1,8 @@
 import React, { useState } from "react"
-import { graphql, Link } from "gatsby"
+// import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
-import { Heading, Button, Box, Section, Container, Text, Kicker } from "../components/ui"
+import { Heading, Button, Box, Section, Container, Input, TextInput } from "../components/ui"
 
-const FORM_ENDPOINT = "";
 
 const ContactForm = () => {
 
@@ -54,32 +53,29 @@ const ContactForm = () => {
                             >
                             <input type="hidden" name="form-name" value="contact" />
                             <Box  padding={2} center>
-                                <input
+                                <Input 
                                 type="text"
                                 placeholder="Your name"
                                 name="name"
-                                class="form-control"
                                 onChange={handleChange}
                                 value={formState.name}
                                 required
                                 />
                             </Box>
                             <Box  padding={2} center>
-                                <input
+                                <Input
                                 type="email"
                                 placeholder="Email"
                                 name="email"
-                                class="form-control"
                                 onChange={handleChange}
                                 value={formState.email}
                                 required
                                 />
                             </Box>
                             <Box className="form-group" padding={1} center>
-                                <textarea
+                                <TextInput
                                 placeholder="Your message"
                                 name="message"
-                                class="form-control form-control-lg"
                                 required
                                 />
                             </Box>
