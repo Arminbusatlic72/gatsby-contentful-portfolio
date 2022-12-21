@@ -639,6 +639,7 @@ export const dataInput = style({
   minWidth: "250px",
   display: "block",
   border: "solid",
+  fontFamily: "inherit",
 })
 
 
@@ -653,4 +654,5 @@ export const textInput = style({
   display: "block",
   margin: "5px",
   border: "solid",
+  fontFamily: "inherit",
 })
