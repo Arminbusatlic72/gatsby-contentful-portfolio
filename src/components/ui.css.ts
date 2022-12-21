@@ -634,10 +634,11 @@ export const dataInput = style({
   fontSize: "12px",
   padding: "5px",
   borderColor: "#005bbb",
-  color: "005bbb",
-  borderRadius: "3px",
-  width: "300px",
+  color: "#005bbb",
+  borderRadius: "5px",
+  minWidth: "250px",
   display: "block",
+  border: "solid",
 })
 
 
@@ -645,9 +646,11 @@ export const textInput = style({
   fontSize: "12px",
   padding: "5px",
   borderColor: "#005bbb",
-  color: "005bbb",
-  borderRadius: "3px",
-  width: "300px",
-  height: "100px",
+  color: "#005bbb",
+  borderRadius: "5px",
+  minWidth: "250px",
+  minHeight: "100px",
   display: "block",
+  margin: "5px",
+  border: "solid",
 })

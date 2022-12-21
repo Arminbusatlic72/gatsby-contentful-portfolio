@@ -252,5 +252,5 @@ export function Input(props) {
 }
 
 export function TextInput(props) {
-  return  <input className={styles.textInput} {...props} />
+  return  <textarea className={styles.textInput} {...props} />
 }

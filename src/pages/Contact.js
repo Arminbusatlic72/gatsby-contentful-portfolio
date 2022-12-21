@@ -76,7 +76,6 @@ const ContactForm = () => {
                                 <TextInput
                                 placeholder="Your message"
                                 name="message"
-                                required
                                 />
                             </Box>
                             <Box  padding={1} center>
