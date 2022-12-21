@@ -637,9 +637,9 @@ export const dataInput = style({
   color: "#005bbb",
   borderRadius: "5px",
   minWidth: "250px",
-  display: "block",
   border: "solid",
   fontFamily: "inherit",
+  fontWeight: "bold",
 })
 
 
@@ -651,8 +651,8 @@ export const textInput = style({
   borderRadius: "5px",
   minWidth: "250px",
   minHeight: "100px",
-  display: "block",
   margin: "5px",
   border: "solid",
   fontFamily: "inherit",
+  fontWeight: "bold",
 })
