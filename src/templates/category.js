@@ -46,9 +46,7 @@ export default function CategoryPage(props) {
       <Section>
         <Container width="tight">
           <Box center paddingY={4}>
-            <Heading>
-              {/* {props.data.allContentfulHomepageProduct.edges[0].node.category} */}
-            </Heading>
+            <Heading></Heading>
             <CategoryList />
           </Box>
           <FlexList gap={0} variant="center" alignItems="start">
