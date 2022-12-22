@@ -46,9 +46,7 @@ export default function CategoryPage(props) {
       <Section>
         <Container width="tight">
           <Box center paddingY={4}>
-            <Heading>
-              {/* {props.data.allContentfulHomepageProduct.edges[0].node.category} */}
-            </Heading>
+            <Heading></Heading>
             <CategoryList />
           </Box>
           <FlexList gap={0} variant="center" alignItems="start">
@@ -72,10 +70,11 @@ export const query = graphql`
           heading
           image {
             alt
-            gatsbyImageData
+            gatsbyImageData(width: 300, height: 300)
           }
           text
           links {
+            text
             href
           }
         }

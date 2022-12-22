@@ -634,9 +634,18 @@ const path = require("path")
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
   const blogTemplate = path.resolve("./src/templates/blog-post.js")
+  const categoryTemplate = path.resolve("./src/templates/category.js")
+
   const res = await graphql(`
     query {
       allContentfulBlogPost {
+        edges {
+          node {
+            slug
+          }
+        }
+      }
+      allContentfulHomepageProduct {
         edges {
           node {
             slug
@@ -654,23 +663,6 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     })
   })
-}
-// create pages for each category
-exports.createPages = async ({ graphql, actions }) => {
-  const { createPage } = actions
-  const categoryTemplate = path.resolve("./src/templates/category.js")
-  const res = await graphql(`
-    query {
-      allContentfulHomepageProduct {
-        edges {
-          node {
-            slug
-          }
-        }
-      }
-    }
-  `)
-
   res.data.allContentfulHomepageProduct.edges.forEach((edge) => {
     createPage({
       component: categoryTemplate,
