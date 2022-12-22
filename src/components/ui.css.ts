@@ -629,3 +629,30 @@ export const visuallyHidden = style({
 export const debug = style({
   outline: "1px solid tomato",
 })
+
+export const dataInput = style({
+  fontSize: "12px",
+  padding: "5px",
+  borderColor: "#005bbb",
+  color: "#005bbb",
+  borderRadius: "5px",
+  minWidth: "250px",
+  border: "solid",
+  fontFamily: "inherit",
+  fontWeight: "bold",
+})
+
+
+export const textInput = style({
+  fontSize: "12px",
+  padding: "5px",
+  borderColor: "#005bbb",
+  color: "#005bbb",
+  borderRadius: "5px",
+  minWidth: "250px",
+  minHeight: "100px",
+  margin: "5px",
+  border: "solid",
+  fontFamily: "inherit",
+  fontWeight: "bold",
+})
